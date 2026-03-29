@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Examedic – Laboratorio de Anatomía Patológica. Diagnósticos precisos y oportunos en patología quirúrgica, inmunohistoquímica y citopatología en Bolivia." />
+  <meta name="keywords" content="laboratorio patología, anatomía patológica, biopsia, inmunohistoquímica, citopatología, Bolivia, La Paz, Examedic" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Examedic – Laboratorio de Anatomía Patológica" />
+  <meta property="og:description" content="Diagnósticos precisos y oportunos en patología quirúrgica, inmunohistoquímica y citopatología." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://examedicpatologia.com" />
+  <!-- Security Headers via meta (complement with server-side headers) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <title>Examedic – Laboratorio de Anatomía Patológica</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome (CDN gratuito) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --navy:    #0d2d5e;
+      --navy-dk: #091e42;
+      --teal:    #3aab99;
+      --sky:     #6db8d9;
+      --white:   #ffffff;
+      --off:     #f4f7fb;
+      --gray:    #6c7a8d;
+      --text:    #1a2a40;
+      --border:  #dde4ef;
+
+      --font-head: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(13,45,94,.10);
+      --shadow-lg: 0 12px 48px rgba(13,45,94,.18);
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section-label { font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-head); font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--navy); line-height: 1.25; }
+    .section-body { font-size: 1.02rem; color: var(--gray); line-height: 1.75; max-width: 620px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: 50px; font-family: var(--font-body); font-size: .9rem; font-weight: 600; cursor: pointer; transition: var(--transition); border: 2px solid transparent; }
+    .btn-primary { background: var(--navy); color: var(--white); }
+    .btn-primary:hover { background: var(--teal); border-color: var(--teal); }
+    .btn-outline { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+    .btn-teal { background: var(--teal); color: var(--white); }
+    .btn-teal:hover { background: var(--navy); }
+
+    /* ===== TOPBAR ===== */
+    #topbar {
+      background: var(--navy-dk);
+      color: #b0c4de;
+      font-size: .8rem;
+      padding: 8px 0;
+    }
+    #topbar .inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    #topbar a { color: #b0c4de; transition: color .2s; }
+    #topbar a:hover { color: var(--teal); }
+    #topbar .tb-item { display: flex; align-items: center; gap: 6px; }
+    #topbar .tb-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+    /* ===== NAV ===== */
+    #navbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(13,45,94,.09);
+      transition: var(--transition);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo img { height: 52px; width: auto; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .logo-sub  { font-size: .62rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); }
+
+    .nav-links { display: flex; align-items: center; gap: 6px; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a {
+      display: block; padding: 8px 14px;
+      font-size: .875rem; font-weight: 500; color: var(--navy);
+      border-radius: 8px; transition: var(--transition);
+    }
+    .nav-links > li > a:hover,
+    .nav-links > li > a.active { color: var(--teal); background: rgba(58,171,153,.07); }
+
+    /* Dropdown */
+    .nav-links .dropdown { display: none; position: absolute; top: calc(100% + 6px); left: 0; min-width: 240px; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg); border: 1px solid var(--border); padding: 8px 0; z-index: 100; }
+    .nav-links li:hover .dropdown { display: block; animation: fadeDown .2s ease; }
+    .nav-links .dropdown a { display: block; padding: 10px 20px; font-size: .87rem; color: var(--gray); transition: var(--transition); }
+    .nav-links .dropdown a:hover { color: var(--teal); background: var(--off); }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+
+    /* Hamburger */
+    #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    #nav-toggle span { display: block; width: 24px; height: 2px; background: var(--navy); margin: 5px 0; border-radius: 2px; transition: var(--transition); }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 90vh;
+      background: linear-gradient(135deg, var(--navy-dk) 0%, var(--navy) 55%, #164b8a 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 100px 0 80px;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23ffffff' opacity='.07'/%3E%3C/svg%3E");
+      background-size: 40px 40px;
+    }
+    /* decorative circles */
+    #hero::after {
+      content: '';
+      position: absolute; right: -180px; top: 50%; transform: translateY(-50%);
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,171,153,.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(58,171,153,.15); border: 1px solid rgba(58,171,153,.35); color: var(--teal); font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 6px 16px; border-radius: 50px; margin-bottom: 24px; }
+    .hero-title { font-family: var(--font-head); font-size: clamp(2.2rem, 4.5vw, 3.4rem); color: var(--white); line-height: 1.2; margin-bottom: 20px; }
+    .hero-title span { color: var(--teal); }
+    .hero-desc { color: #a8c0d8; font-size: 1.05rem; line-height: 1.75; margin-bottom: 36px; max-width: 500px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 36px; margin-top: 48px; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-num { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--teal); }
+    .stat-lbl { font-size: .78rem; color: #7fa8c8; letter-spacing: .06em; text-transform: uppercase; margin-top: 2px; }
+
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .hero-card {
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      animation: floatCard 4s ease-in-out infinite;
+    }
+    @keyframes floatCard { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    .hero-logo-wrap { width: 220px; height: 220px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.08); border-radius: 50%; padding: 28px; }
+    .hero-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-tagline { color: var(--white); font-family: var(--font-head); font-size: 1.1rem; margin-bottom: 6px; }
+    .hero-sub { color: #89b0cc; font-size: .82rem; }
+
+    /* WhatsApp Float */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25d366; color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      transition: var(--transition);
+      animation: pulse-wa 2.5s infinite;
+    }
+    .wa-float:hover { transform: scale(1.12); }
+    @keyframes pulse-wa {
+      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,.45); }
+      50% { box-shadow: 0 4px 32px rgba(37,211,102,.75); }
+    }
+
+    /* ===== CONTACT STRIP ===== */
+    #contact-strip { background: var(--off); padding: 48px 0; border-top: 1px solid var(--border); }
+    .strip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 32px; }
+    .strip-item { display: flex; align-items: flex-start; gap: 16px; }
+    .strip-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--navy); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .strip-info h4 { font-size: .9rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .strip-info p, .strip-info a { font-size: .85rem; color: var(--gray); line-height: 1.55; }
+    .strip-info a:hover { color: var(--teal); }
+
+    /* ===== ABOUT ===== */
+    #about { padding: 100px 0; background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-bg { width: 100%; aspect-ratio: 4/5; border-radius: 24px; overflow: hidden; background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%); display: flex; align-items: center; justify-content: center; }
+    .about-microscope { font-size: 10rem; opacity: .12; color: var(--white); }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--teal); color: var(--white);
+      border-radius: 20px; padding: 24px 28px;
+      box-shadow: var(--shadow-lg); text-align: center;
+    }
+    .about-badge .num { font-family: var(--font-head); font-size: 2.4rem; font-weight: 700; line-height: 1; }
+    .about-badge .lbl { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; opacity: .85; margin-top: 4px; }
+    .about-content { padding-right: 20px; }
+    .about-list { margin: 28px 0; display: flex; flex-direction: column; gap: 16px; }
+    .about-list li { display: flex; align-items: center; gap: 12px; font-size: .95rem; color: var(--gray); }
+    .about-list li i { color: var(--teal); font-size: 1rem; }
+
+    /* ===== SERVICES ===== */
+    #services { padding: 100px 0; background: var(--off); }
+    .services-header { text-align: center; margin-bottom: 60px; }
+    .services-header .section-body { margin: 16px auto 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 28px; }
+    .service-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--teal));
+      opacity: 0; transition: var(--transition);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(58,171,153,.3); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { width: 60px; height: 60px; border-radius: 16px; background: linear-gradient(135deg, var(--navy), #1a4a8a); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 20px; }
+    .service-card h3 { font-family: var(--font-head); font-size: 1.15rem; color: var(--navy); margin-bottom: 10px; }
+    .service-card p { font-size: .88rem; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
+    .service-link { font-size: .82rem; font-weight: 600; color: var(--teal); display: inline-flex; align-items: center; gap: 6px; transition: var(--transition); }
+    .service-link:hover { color: var(--navy); gap: 10px; }
+
+    /* ===== WHY US ===== */
+    #why { padding: 100px 0; background: var(--navy); position: relative; overflow: hidden; }
+    #why::after { content: ''; position: absolute; right: -100px; bottom: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(58,171,153,.12) 0%, transparent 70%); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+    .why-title { font-family: var(--font-head); font-size: clamp(2rem,3.5vw,2.8rem); color: var(--white); line-height: 1.25; margin-bottom: 20px; }
+    .why-desc { color: #7fa8c8; font-size: 1rem; line-height: 1.75; margin-bottom: 36px; }
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .feature { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 24px 20px; transition: var(--transition); }
+    .feature:hover { background: rgba(58,171,153,.1); border-color: rgba(58,171,153,.25); }
+    .feature i { color: var(--teal); font-size: 1.4rem; margin-bottom: 10px; }
+    .feature h4 { color: var(--white); font-size: .95rem; font-weight: 600; margin-bottom: 6px; }
+    .feature p { color: #7fa8c8; font-size: .82rem; line-height: 1.6; }
+
+    /* ===== CTA STRIP ===== */
+    #cta { padding: 80px 0; background: linear-gradient(135deg, var(--teal) 0%, #2d9182 100%); }
+    .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .cta-text h2 { font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--white); margin-bottom: 8px; }
+    .cta-text p { color: rgba(255,255,255,.8); font-size: 1rem; }
+    .btn-white { background: var(--white); color: var(--teal); }
+    .btn-white:hover { background: var(--navy); color: var(--white); }
+
+    /* ===== CONTACT FORM ===== */
+    #contact { padding: 100px 0; background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .contact-info h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.4rem); color: var(--navy); margin-bottom: 16px; }
+    .contact-info p { color: var(--gray); font-size: .97rem; line-height: 1.75; margin-bottom: 36px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .c-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--off); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .c-detail h4 { font-size: .88rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .c-detail p, .c-detail a { font-size: .85rem; color: var(--gray); }
+    .c-detail a:hover { color: var(--teal); }
+
+    /* Form */
+    .contact-form { background: var(--off); border-radius: 20px; padding: 40px; }
+    .contact-form h3 { font-family: var(--font-head); font-size: 1.3rem; color: var(--navy); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: .82rem; font-weight: 600; color: var(--navy); letter-spacing: .04em; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 11px 14px;
+      font-family: var(--font-body); font-size: .9rem; color: var(--text);
+      transition: var(--transition); outline: none; width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(58,171,153,.12); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-note { font-size: .78rem; color: var(--gray); margin-bottom: 16px; line-height: 1.5; }
+    .form-note a { color: var(--teal); }
+
+    /* ===== FOOTER ===== */
+    #footer { background: var(--navy-dk); color: #8aabcc; padding: 72px 0 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+    .footer-brand .logo-name { color: var(--white); font-size: 1.6rem; }
+    .footer-brand .logo-sub { color: var(--teal); }
+    .footer-brand p { font-size: .88rem; line-height: 1.75; margin: 18px 0 24px; color: #6a8aa8; }
+    .social-links { display: flex; gap: 10px; }
+    .social-link { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,.06); color: #8aabcc; display: flex; align-items: center; justify-content: center; font-size: .95rem; transition: var(--transition); }
+    .social-link:hover { background: var(--teal); color: var(--white); }
+    .footer-col h4 { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--white); margin-bottom: 20px; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: .87rem; color: #6a8aa8; transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--teal); }
+    .footer-bottom { margin-top: 48px; border-top: 1px solid rgba(255,255,255,.07); padding: 24px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .8rem; color: #4a6a88; }
+    .footer-bottom a { color: #4a6a88; }
+    .footer-bottom a:hover { color: var(--teal); }
+
+    /* ===== MOBILE ===== */
+    #mobile-menu { display: none; flex-direction: column; gap: 4px; background: var(--white); padding: 16px 24px 24px; border-top: 1px solid var(--border); }
+    #mobile-menu a { display: block; padding: 10px 0; font-size: .95rem; color: var(--navy); border-bottom: 1px solid var(--border); }
+    #mobile-menu a:last-child { border-bottom: none; }
+    #mobile-menu .mm-btn { margin-top: 12px; display: inline-flex; }
+
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      #nav-toggle { display: block; }
+      #mobile-menu { display: none; }
+      #mobile-menu.open { display: flex; }
+      .hero-grid, .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { display: none; }
+      .about-badge { position: static; margin-top: 20px; display: inline-block; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .strip-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      #topbar .tb-group { gap: 12px; }
+    }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- WhatsApp Floating Button -->
+  <a class="wa-float" href="https://wa.me/59160860484?text=Hola%20Examedic%2C%20necesito%20información%20sobre%20sus%20servicios" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ===== TOPBAR ===== -->
+  <div id="topbar">
+    <div class="container inner">
+      <div class="tb-group">
+        <div class="tb-item"><i class="fas fa-clock"></i> Lun – Sáb: 8:00 – 20:00 | Dom: cerrado</div>
+      </div>
+      <div class="tb-group">
+        <a href="tel:+59160860484" class="tb-item"><i class="fas fa-phone"></i> +591 608 60484</a>
+        <a href="/cdn-cgi/l/email-protection#5b3834352f3a382f341b3e233a363e3f32382b3a2f3437343c323a75383436" class="tb-item"><i class="fas fa-envelope"></i> <span class="__cf_email__" data-cfemail="aecdc1c0dacfcddac1eecbd6cfc3cbcac7cddecfdac1c2c1c9c7cf80cdc1c3">[email&#160;protected]</span></a>
+        <a href="https://www.facebook.com/examedicpatologia" target="_blank" rel="noopener" class="tb-item"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#inicio" class="logo">
+        <img src="logo.jpg" alt="Logo Examedic" style="height:52px;width:auto;object-fit:contain;" />
+        <div class="logo-text">
+          <span class="logo-name">EXAMEDIC</span>
+          <span class="logo-sub">Anatomía Patológica</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#about">Nosotros</a></li>
+        <li>
+          <a href="#services">Estudios <i class="fas fa-chevron-down" style="font-size:.7rem;margin-left:3px;"></i></a>
+          <ul class="dropdown">
+            <li><a href="#services">Patología Quirúrgica</a></li>
+            <li><a href="#services">Inmunohistoquímica</a></li>
+            <li><a href="#services">Citopatología</a></li>
+            <li><a href="#services">Segunda Opinión</a></li>
+          </ul>
+        </li>
+        <li><a href="#why">¿Por qué elegirnos?</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="https://wa.me/59160860484" class="btn btn-teal" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+
+      <button id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#about">Nosotros</a>
+      <a href="#services">Patología Quirúrgica</a>
+      <a href="#services">Inmunohistoquímica</a>
+      <a href="#services">Citopatología</a>
+      <a href="#services">Segunda Opinión</a>
+      <a href="#why">¿Por qué elegirnos?</a>
+      <a href="#contact">Contacto</a>
+      <a href="https://wa.me/59160860484" class="btn btn-teal mm-btn" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="inicio">
+    <div id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left">
+            <div class="hero-badge"><i class="fas fa-flask"></i> Laboratorio Certificado</div>
+            <h1 class="hero-title">Diagnósticos precisos para una <span>medicina de calidad</span></h1>
+            <p class="hero-desc">Laboratorio de Anatomía Patológica comprometido con el diagnóstico preciso, con responsabilidad, eficiencia y calidad, orientado a la prevención y diagnóstico precoz de patologías oncológicas y no oncológicas en Santa Cruz de la Sierra, Bolivia.</p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-teal"><i class="fas fa-calendar-alt"></i> Solicitar Estudio</a>
+              <a href="#services" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.4)">Ver Servicios</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat"><div class="stat-num">+10</div><div class="stat-lbl">Años de Exp.</div></div>
+              <div class="stat"><div class="stat-num">+5K</div><div class="stat-lbl">Estudios/año</div></div>
+              <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Compromiso</div></div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-card">
+              <div class="hero-logo-wrap">
+                <!-- Large version of the SVG logo for hero -->
+                <img src="logo.jpg" alt="Logo Examedic" style="width:160px;height:160px;object-fit:contain;background:rgba(255,255,255,0.1);border-radius:50%;padding:16px;" />
+              </div>
+              <p class="hero-tagline">Examedic</p>
+              <p class="hero-sub">Laboratorio de Anatomía Patológica</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT STRIP ===== -->
+  <section id="contact-strip">
+    <div class="container">
+      <div class="strip-grid">
+        <div class="strip-item reveal">
+          <div class="strip-icon"><i class="fas fa-phone"></i></div>
+          <div class="strip-info">
+            <h4>Teléfono</h4>
+            <a href="tel:+59160860484">+591 608 60484</a><br>
+            <a href="tel:+5917734-24779">+591 734 24779</a>
+          </div>
+        </div>
+        <div class="strip-item reveal">
+          <div class="strip-icon"><i class="fas fa-clock"></i></div>
+          <div class="strip-info">
+            <h4>Horario de Atención</h4>
+            <p>Lun – Sáb: 8:00 AM – 8:00 PM</p>
+            <p>Domingo: cerrado</p>
+          </div>
+        </div>
+        <div class="strip-item reveal">
+          <div class="strip-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="strip-info">
+            <h4>Ubicación</h4>
+            <p>Santa Cruz de la Sierra, Bolivia</p>
+            <a href="https://goo.gl/maps/y5AfgdqBi9KfSBKg7" target="_blank" rel="noopener">Ver en mapa →</a>
+          </div>
+        </div>
+        <div class="strip-item reveal">
+          <div class="strip-icon"><i class="fas fa-envelope"></i></div>
+          <div class="strip-info">
+            <h4>Correo Electrónico</h4>
+            <a href="mailto:pmauricio.ps@gmail.com">pmauricio.ps@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <div class="about-img-bg">
+            <div class="about-microscope"><i class="fas fa-microscope"></i></div>
+          </div>
+          <div class="about-badge">
+            <div class="num">+10</div>
+            <div class="lbl">Años de Experiencia</div>
+          </div>
+        </div>
+        <div class="about-content reveal">
+          <p class="section-label">Quiénes somos</p>
+          <h2 class="section-title">Excelencia en diagnóstico patológico para Bolivia</h2>
+          <p class="section-body" style="margin-top:16px;">Examedic es un laboratorio de Anatomía Patológica ubicado en Santa Cruz de la Sierra, Bolivia. Nos comprometemos en brindar diagnósticos precisos con responsabilidad, eficiencia y calidad, orientados a la prevención y diagnóstico precoz de patologías oncológicas y no oncológicas.</p>
+          <ul class="about-list">
+            <li><i class="fas fa-check-circle"></i> Patólogos especializados y certificados</li>
+            <li><i class="fas fa-check-circle"></i> Equipos con tecnología innovadora</li>
+            <li><i class="fas fa-check-circle"></i> Resultados en tiempos establecidos</li>
+            <li><i class="fas fa-check-circle"></i> Atención personalizada a médicos y pacientes</li>
+            <li><i class="fas fa-check-circle"></i> Confidencialidad y seguridad de la información</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Solicitar Información <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <p class="section-label">Nuestros Estudios</p>
+        <h2 class="section-title">Servicios de Anatomía Patológica</h2>
+        <p class="section-body">Contamos con una gama completa de estudios patológicos para brindar un diagnóstico integral y preciso a médicos y pacientes.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-cut"></i></div>
+          <h3>Patología Quirúrgica</h3>
+          <p>Procesamiento y análisis histopatológico de biopsias y piezas quirúrgicas para establecer un diagnóstico definitivo con el más alto rigor científico.</p>
+          <a href="#contact" class="service-link">Solicitar estudio <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-vial"></i></div>
+          <h3>Inmunohistoquímica</h3>
+          <p>Estudio complementario que utiliza anticuerpos específicos para identificar marcadores celulares, contribuyendo al diagnóstico y caracterización de neoplasias.</p>
+          <a href="#contact" class="service-link">Solicitar estudio <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-microscope"></i></div>
+          <h3>Citopatología</h3>
+          <p>Análisis de muestras celulares obtenidas por frotis o aspiración con aguja fina (BAAF), para diagnóstico de lesiones benignas y malignas.</p>
+          <a href="#contact" class="service-link">Solicitar estudio <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-search"></i></div>
+          <h3>Segunda Opinión</h3>
+          <p>Revisión y validación de diagnósticos histopatológicos previos por nuestros especialistas para brindar mayor certeza diagnóstica al médico tratante.</p>
+          <a href="#contact" class="service-link">Solicitar estudio <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-snowflake"></i></div>
+          <h3>Estudio Transoperatorio</h3>
+          <p>Diagnóstico histológico intraoperatorio por congelación para orientar al cirujano durante el procedimiento quirúrgico en tiempo real.</p>
+          <a href="#contact" class="service-link">Solicitar estudio <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-dna"></i></div>
+          <h3>Estudios Especiales</h3>
+          <p>Técnicas histoquímicas especiales como PAS, Ziehl-Neelsen, Giemsa y otras tinciones complementarias para diagnósticos específicos.</p>
+          <a href="#contact" class="service-link">Solicitar estudio <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section id="why">
+    <div class="container">
+      <div class="why-grid">
+        <div class="reveal">
+          <p class="section-label" style="color:var(--teal)">¿Por qué elegirnos?</p>
+          <h2 class="why-title">Respaldados por experiencia y precisión diagnóstica</h2>
+          <p class="why-desc">En Examedic combinamos la formación especializada de nuestros patólogos con tecnología moderna para ofrecer diagnósticos confiables que marcan la diferencia en el tratamiento de nuestros pacientes.</p>
+          <a href="#contact" class="btn btn-teal">Contáctanos <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="features-grid reveal">
+          <div class="feature">
+            <i class="fas fa-user-md"></i>
+            <h4>Patólogos Especializados</h4>
+            <p>Médicos con formación y experiencia en anatomía patológica.</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-bolt"></i>
+            <h4>Resultados Oportunos</h4>
+            <p>Tiempos de respuesta definidos para cada tipo de estudio.</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-shield-alt"></i>
+            <h4>Confidencialidad</h4>
+            <p>Manejo seguro y reservado de toda la información del paciente.</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-headset"></i>
+            <h4>Atención Personalizada</h4>
+            <p>Asesoría directa a médicos sobre los hallazgos diagnósticos.</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-certificate"></i>
+            <h4>Calidad Certificada</h4>
+            <p>Procesos estandarizados y control de calidad en cada etapa.</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Cobertura Nacional</h4>
+            <p>Recepción de muestras desde distintas ciudades de Bolivia.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA STRIP ===== -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text reveal">
+          <h2>¿Necesita un estudio de patología?</h2>
+          <p>Agéndese hoy y reciba atención especializada desde el primer contacto.</p>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;" class="reveal">
+          <a href="https://wa.me/59160860484?text=Hola%2C%20necesito%20información%20sobre%20estudios%20de%20patología" class="btn btn-white" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+          </a>
+          <a href="tel:+59160860484" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,.5)">
+            <i class="fas fa-phone"></i> Llamar ahora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT FORM ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="section-label">Contacto</p>
+          <h2>Estamos para ayudarle</h2>
+          <p>Complete el formulario o comuníquese directamente con nosotros por los medios disponibles. Le responderemos a la brevedad posible.</p>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fas fa-phone"></i></div>
+            <div class="c-detail">
+              <h4>Teléfono</h4>
+              <a href="tel:+59160860484">+591 608 60484</a><br>
+              <a href="tel:+5917734-24779">+591 734 24779</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="c-detail">
+              <h4>WhatsApp</h4>
+              <a href="https://wa.me/59160860484" target="_blank" rel="noopener">+591 608 60484</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fas fa-envelope"></i></div>
+            <div class="c-detail">
+              <h4>Correo</h4>
+              <a href="mailto:pmauricio.ps@gmail.com">pmauricio.ps@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="c-detail">
+              <h4>Dirección</h4>
+              <p>Santa Cruz de la Sierra, Bolivia</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon"><i class="fas fa-clock"></i></div>
+            <div class="c-detail">
+              <h4>Horario</h4>
+              <p>Lun – Sáb: 8:00 – 20:00<br>Dom: cerrado</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <h3>Solicitar Información</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Su nombre" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono *</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+591 7..." required autocomplete="tel" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="servicio">Tipo de estudio *</label>
+            <select id="servicio" name="servicio" required>
+              <option value="" disabled selected>Seleccione un servicio</option>
+              <option value="patologia-quirurgica">Patología Quirúrgica</option>
+              <option value="inmunohistoquimica">Inmunohistoquímica</option>
+              <option value="citopatologia">Citopatología</option>
+              <option value="segunda-opinion">Segunda Opinión</option>
+              <option value="transoperatorio">Estudio Transoperatorio</option>
+              <option value="especiales">Estudios Especiales</option>
+              <option value="otro">Otro / Consulta general</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Describa brevemente su consulta o el tipo de muestra a enviar…"></textarea>
+          </div>
+          <p class="form-note">Al enviar será redirigido a WhatsApp para completar su solicitud de forma segura. Sus datos son tratados con absoluta confidencialidad. <a href="#">Política de privacidad</a>.</p>
+          <button type="button" class="btn btn-primary" id="send-wa" style="width:100%;justify-content:center;">
+            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo-text" style="margin-bottom:4px;">
+            <span class="logo-name">EXAMEDIC</span>
+            <span class="logo-sub">Laboratorio de Anatomía Patológica</span>
+          </div>
+          <p>Diagnósticos histopatológicos precisos y oportunos al servicio de la medicina en Bolivia. Comprometidos con la calidad, la ética y la excelencia científica.</p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/examedicpatologia" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://wa.me/59160860484" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="/cdn-cgi/l/email-protection#87e4e8e9f3e6e4f3e8c7e2ffe6eae2e3eee4f7e6f3e8ebe8e0eee6a9e4e8ea" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#services">Patología Quirúrgica</a></li>
+            <li><a href="#services">Inmunohistoquímica</a></li>
+            <li><a href="#services">Citopatología</a></li>
+            <li><a href="#services">Segunda Opinión</a></li>
+            <li><a href="#services">Estudio Transoperatorio</a></li>
+            <li><a href="#services">Estudios Especiales</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Institución</h4>
+          <ul>
+            <li><a href="#about">Nosotros</a></li>
+            <li><a href="#why">¿Por qué Examedic?</a></li>
+            <li><a href="#contact">Contacto</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="tel:+59160860484">+591 608 60484</a></li>
+            <li><a href="mailto:pmauricio.ps@gmail.com">pmauricio.ps@gmail.com</a></li>
+            <li><a href="#">Santa Cruz de la Sierra, Bolivia</a></li>
+            <li><a href="https://www.facebook.com/examedicpatologia" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Examedic – Laboratorio de Anatomía Patológica. Todos los derechos reservados.</span>
+        <span>Sitio web listo para migrar a <a href="https://examedicpatologia.com">examedicpatologia.com</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== MOBILE MENU =====
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => { mobileMenu.classList.remove('open'); toggle.setAttribute('aria-expanded', false); });
+    });
+
+    // ===== ACTIVE NAV ON SCROLL =====
+    const sections = document.querySelectorAll('section[id], div[id="inicio"]');
+    const navLinks = document.querySelectorAll('.nav-links > li > a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+    // ===== SCROLL REVEAL =====
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ===== WHATSAPP FORM BUTTON =====
+    document.getElementById('send-wa').addEventListener('click', () => {
+      const nombre   = document.getElementById('nombre').value.trim() || 'No indicado';
+      const telefono = document.getElementById('telefono').value.trim() || 'No indicado';
+      const email    = document.getElementById('email').value.trim() || 'No indicado';
+      const servicio = document.getElementById('servicio').value || 'No seleccionado';
+      const mensaje  = document.getElementById('mensaje').value.trim() || 'Sin mensaje';
+
+      const text = encodeURIComponent(
+        `Hola Examedic, me comunico desde el sitio web:\n\n` +
+        `👤 Nombre: ${nombre}\n` +
+        `�
